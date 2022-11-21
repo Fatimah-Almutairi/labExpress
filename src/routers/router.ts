@@ -1,6 +1,6 @@
 import express from "express";
-import {z} from "zod";
-import { Schema } from "zod";
+// import {z} from "zod";
+// import { Schema } from "zod";
 import validate from "../middleware/validate";
 import {movie, SchemaType } from '../zod-schema/schema';
 
