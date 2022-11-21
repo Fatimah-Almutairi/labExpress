@@ -52,4 +52,36 @@ rout.get('/search/:id', (req, res) => {
     return res.json(search);
 });
 
+// rout.put('/:level', (req, res) => {
+//     let changeLevel = req.body as SchemaType;
+//     const  level  = req.params;
+//     const changed = students.map ( (std) => {
+//         std.level = std.level + 1;
+//     });
+//     changed.push(changeLevel);
+//     students = changed;
+//     return res.status(201).json({message: "Students Updated"
+// });
+// });
+
+rout.get('/level/:id', (req, res) => {
+    const {id} = req.params;
+    let flag = false;
+    for (let i=0; i<students.length; i++){
+        if (students[i].id === id && students[i].level < 8){
+            let nextLevel = students[i].level +1;
+            students[i].level = nextLevel;
+            flag = true;
+        }
+    }
+    if(!flag){
+        return res.status(404).json({
+            message: 'No student found'
+        });
+    } else {
+        return res.status(200).json({
+            message: 'Student moved to the next level'
+        });
+    }
+})
 export default rout;
